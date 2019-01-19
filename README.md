@@ -19,4 +19,5 @@ What I'll Have to Learn
 The public API being used will be the new technology; Maybe 2 different API (billing system - payment system & google maps- api).
 
 Project Tracker: https://app.gitkraken.com/glo/board/XEIdaDlDSQAP5i7Q
+
 What do users want to see in their next task app?
