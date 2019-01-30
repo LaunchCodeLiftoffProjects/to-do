@@ -12,7 +12,7 @@ Status - users can vieww the current status and see realtime results of their co
 
 Profile page - this will allow the users to view results for the day, week, month or even year.
 
-Technologies
+Technologies 
 Java HTML CSS My SQL Thymeleaf Gradle
 
 What I'll Have to Learn
