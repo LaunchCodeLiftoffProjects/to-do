@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/>
+<head>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/index.css">
+<title>Title</title>
+</head th:fragment="head">
+<body class="container">
+<div class="back">
+    <header class="header">
+        <div class="logo">
+            <img src="../static/images/logo.png">
+        </div>
+<form class="block">
+    <table>
+        <tr>
+            <td>
+                <label>UserName</label>
+            </td>
+            <td>
+                <input type="text" name="username" />
+            </td>
+        </tr>
+        <tr class="bloack2">
+            <td>
+                <label>Password</label>
+            </td>
+            <td>
+                <input type="password" name="password" />
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="2">
+
+                <input class="button" type="submit" value="LogIn"/>
+            </td>
+
+
+
+        </tr>
+
+
+
+        <tr>
+            <td colspan="2">
+
+                <p>Don't have an Account?<a href="newuser.html">NewUser</a></p>
+            </td>
+
+
+
+        </tr>
+    </table>
+</form>
+    </header>
+    <div class="body">
+        <div class="give">
+            <img src="../static/images/get.png">
+        </div>
+        <div class="have">
+            <img src="../static/images/have.png">
+        </div>
+    </div>
+</div>
+</body>
+</html>
