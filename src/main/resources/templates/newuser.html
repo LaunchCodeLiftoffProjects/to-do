@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<<<<<<< Updated upstream
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8"/></head>
+
+<body class="container">
+
+<h1 th:text="${title}">Default Title</h1>
+
+<div>
+    <form method="post">
+        <div class="form-group">
+            <label th:for="username">UserName</label>
+            <input th:field="*{username}"/>
+            <div th:errors="*{username}"></div>
+        </div>
+
+        <div class="form-group">
+            <label th:for="firstname">FirstName</label>
+            <input th:field="*{firstname}"/>
+            <div th:errors="*{firstname}"></div>
+        </div>
+
+        <div class="form-group">
+            <label th:for="lastname">LastName</label>
+            <input th:field="*{lastname}"/>
+            <div th:errors="*{lastname}"></div>
+        </div>
+
+        <div class="form-group">
+            <label th:for="password">Password</label>
+            <input th:field="*{password}"/>
+            <div th:errors="*{password}"></div>
+        </div>
+
+        <div class="form-group">
+            <label th:for="rtpassword">Re-Type Password</label>
+            <input th:field="*{rtpassword}"/>
+            <div th:errors="*{rtpassword}"></div>
+        </div>
+
+        <div class="form-group">
+            <label th:for="email">Email</label>
+            <input th:field="*{email}"/>
+            <div th:errors="*{email}"></div>
+        </div>
+
+        <input type="submit" value="SignUp"/>
+
+        <div>
+            <label>Already Registered?</label>
+            <a th:href="login">Sign In</a>
+        </div>
+    </form>
+</div>
+=======
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+>>>>>>> Stashed changes
+</body>
+</html>

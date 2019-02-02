@@ -1,0 +1,68 @@
+{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin: 0px;
+    padding:0px;
+    font-family: Bradley Hand ITC;
+    font-style:normal;
+    font-weight: 700;
+}
+.back{
+    background-image: url("../images/cork.jpg")
+}
+.header{
+    display:grid;
+    grid-template-columns: 2% 1fr 1fr 1fr 1fr auto 5%;
+    column-gap: 2%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+
+}
+.logo{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.block{
+    grid-column-start: 5;
+    grid-column-end: 6;
+    padding-top: 5%;
+    background-color: #feff9c;
+}
+form{
+padding-left: 2%;
+font-size: 1.25em;
+}
+.button{
+font-size: 1em;
+margin-left:50%;
+}
+
+.body{
+ display:grid;
+    grid-template-columns: 15% 1fr 1fr 1fr 15%;
+    column-gap: 2%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+.give{
+    grid-column-start: 2;
+    grid-column-end: 5;
+    text-align: center;
+}
+.give img{
+    width:800px;
+    height:auto;
+}
+.have{
+    grid-column-start: 2;
+    grid-column-end: 6;
+    text-align: center;
+    padding-top: 2%;
+}
+.have img{
+    width:800px;
+    height:auto;
+}
