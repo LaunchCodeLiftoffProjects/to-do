@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-//@RequestMapping(value = "todo")
+@RequestMapping(value = "todo")
 public class HomeController {
 
     @RequestMapping(value="/")
