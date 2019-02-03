@@ -46,27 +46,34 @@ public class HomeController {
     @RequestMapping(value="login", method= RequestMethod.POST)
     public String processLoginForm(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
 
-        //Login login = loginDao.findOne(username);
-        //System.out.println(login);
+        Login login = loginDao.findOne(username);
+        System.out.println(login);
 
-        Optional<Login> loginOne =  loginDao.findById(username);
-        Login login = loginOne.get();
-        System.out.println(login.getUsername());
+//        if(username == null || password == null){
+//
+//            model.addAttribute("message", "Please fill the fields");
+//            return "login";
+//        }
+//        else {
+//
+//            Optional<Login> loginOne = loginDao.findById(username);
+//            System.out.println("loginone = " + loginOne);
+//            Login login = loginOne.get();
+//            System.out.println(login.getUsername());
 
-        if(login == null){
-            model.addAttribute("message","you are not Registered");
-            return "login";
-        }
-        else if(login.getPassword().equals(password)){
+            if (login == null) {
+                model.addAttribute("message", "you are not Registered");
+                return "login";
+            } else if (login.getPassword().equals(password)) {
 
-            model.addAttribute("username",login.getUsername());
+                model.addAttribute("username", login.getUsername());
 
-            return "dashboard";
-        }
-        else{
-            model.addAttribute("message","Invalid Username and Password");
-            return "login";
-        }
+                return "dashboard";
+            } else {
+                model.addAttribute("message", "Invalid Username and Password");
+                return "login";
+            }
+
     }
 
     @RequestMapping(value = "newuser", method = RequestMethod.GET)
