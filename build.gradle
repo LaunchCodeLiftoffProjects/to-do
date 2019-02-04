@@ -13,10 +13,12 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
-group = 'org.launchcode'
-version = '0.0.1-SNAPSHOT'
+//jar {
+  //  baseName = 'cheese-mvc'
+    //version = '0.0.1-SNAPSHOT'
+//}
+
 sourceCompatibility = 1.8
 
 repositories {
@@ -25,12 +27,16 @@ repositories {
 
 
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('mysql:mysql-connector-java')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('mysql:mysql-connector-java')
 }
 
-
+bootRun {
+    addResources = true
+}

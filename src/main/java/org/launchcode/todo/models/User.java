@@ -3,6 +3,8 @@ package org.launchcode.todo.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -11,10 +13,24 @@ public class User {
     @GeneratedValue
     private int id;
 
+    @NotNull
+    @Size(min=3, max=10)
     private String username;
+
+    @NotNull
+    @Size(min=3, max=10)
     private String firstname;
+
+    @NotNull
+    @Size(min=3, max=10)
     private String lastname;
+
+    @NotNull
+    @Size(min=1,message = "Password must not be Empty")
     private String password;
+
+    @NotNull
+    @Size(min=1,message = "Email must not be Empty")
     private String email;
 
     public User(){}
