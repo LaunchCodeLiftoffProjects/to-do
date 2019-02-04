@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
-    <meta charset="UTF-8"/></head>
-
+<!--<head th:replace="fragments :: head"></head>-->
 <body class="container">
-
 <h1 th:text="${title}">Default Title</h1>
 
-<form method="post">
+<!--<nav th:replace="fragments :: navigation"></nav>-->
+
+<form method="post" style="max-width:600px;" th:object="${user}">
     <table>
         <tr>
             <td>
-                <label>UserName</label>
+                <label th:for="username">UserName</label>
             </td>
             <td>
-                <input type="text" name="username" />
+                <input class="form-control" th:field="*{username}" />
+                <span th:errors="*{username}" class="error"></span>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <label th:for="firstname">FirstName</label>
+            </td>
+            <td>
+                <input class="form-control" th:field="*{firstname}" />
+                <span th:errors="*{firstname}" class="error"></span>
             </td>
         </tr>
 
         <tr>
             <td>
-                <label>FirstName</label>
+                <label th:for="lasttname">LastName</label>
             </td>
             <td>
-                <input type="text" name="firstname" />
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <label>LastName</label>
-            </td>
-            <td>
-                <input type="text" name="lastname" />
+                <input class="form-control" th:field="*{lastname}" />
+                <span th:errors="*{lastname}" class="error"></span>
             </td>
         </tr>
 
         <tr>
             <td>
-                <label>Password</label>
+                <label th:for="password">Password</label>
             </td>
             <td>
-                <input type="password" name="password" />
+                <input class="form-control" th:field="*{password}" />
+                <span th:errors="*{password}" class="error"></span>
             </td>
         </tr>
 
@@ -56,10 +60,11 @@
 
         <tr>
             <td>
-                <label>Email</label>
+                <label th:for="email">Email</label>
             </td>
             <td>
-                <input type="email" name="email" />
+                <input class="form-control" th:field="*{email}" />
+                <span th:errors="*{email}" class="error"></span>
             </td>
         </tr>
 
