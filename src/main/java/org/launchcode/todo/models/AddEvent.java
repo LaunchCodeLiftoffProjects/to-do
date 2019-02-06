@@ -6,9 +6,9 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-//created AddTask class and variables
+//created AddEvent class and variables
 @Entity
-public class AddTask {
+public class AddEvent {
 
     @Id
     @GeneratedValue
@@ -29,10 +29,10 @@ public class AddTask {
 
     private String Completed;
 
-    public AddTask() {}
+    public AddEvent() {}
 
-    //constructor to initialize the objects of the AddTask class
-    public AddTask(int Date, int Start_Time, int Finish_Time, String Location, String Type, String Description, String Completed) {
+    //constructor to initialize the objects of the AddEvent class
+    public AddEvent(int Date, int Start_Time, int Finish_Time, String Location, String Type, String Description, String Completed) {
 
         this.Date = Date;
         this.Start_Time = Start_Time;
