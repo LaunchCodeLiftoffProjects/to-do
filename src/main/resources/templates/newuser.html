@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="fragments :: head"></head>-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <link th:href="@{/css/newuser.css}" href="/css/newuser.css"  rel="stylesheet" type="text/css" />
+</head>
 <body class="container">
-<h1 th:text="${title}">Default Title</h1>
-
-<!--<nav th:replace="fragments :: navigation"></nav>-->
-
+<div class="back">
+    <header class="header">
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" />
+        </div>
+    </header>
+    <div class="body">
+        <div class="block">
 <form method="post" style="max-width:600px;" th:object="${user}">
     <table>
         <tr>
@@ -83,6 +90,8 @@
         </tr>
     </table>
 </form>
-
+        </div>
+</div>
+</div>
 </body>
 </html>

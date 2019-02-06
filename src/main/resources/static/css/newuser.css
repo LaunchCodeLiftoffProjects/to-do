@@ -18,13 +18,11 @@ body{
     column-gap: 2%;
     padding-top: 2%;
     padding-bottom: 1%;
-
 }
 .logo{
     grid-column-start: 2;
     grid-column-end: 3;
 }
-
 form{
 padding-left: 2%;
 font-size: 2em;
@@ -33,7 +31,6 @@ font-size: 2em;
 font-size: 1.40em;
 margin-left:50%;
 }
-
 .body{
  display:grid;
     grid-template-columns: 1fr auto 1fr;
@@ -49,7 +46,6 @@ margin-left:50%;
     padding 2%;
     padding-right:2%;
 }
-
 @media (max-width:1250px){
 .logo img{
     width:333px;
