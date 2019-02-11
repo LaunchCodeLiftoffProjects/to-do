@@ -5,16 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
-//created AddTask class and variables
+//created AddEvent class and variables
 @Entity
-public class AddTask {
+public class Event {
 
     @Id
     @GeneratedValue
     private int id;
 
-    private int Date;
+    @NotNull
+    private Date EventDate;
+    //private int Date;
     private int Start_Time;
     private int Finish_Time;
     private String Location;
@@ -29,12 +32,12 @@ public class AddTask {
 
     private String Completed;
 
-    public AddTask() {}
+    public Event() {}
 
-    //constructor to initialize the objects of the AddTask class
-    public AddTask(int Date, int Start_Time, int Finish_Time, String Location, String Type, String Description, String Completed) {
+    //constructor to initialize the objects of the AddEvent class
+    public Event(Date Date, int Start_Time, int Finish_Time, String Location, String Type, String Description, String Completed) {
 
-        this.Date = Date;
+        this.EventDate = Date;
         this.Start_Time = Start_Time;
         this.Finish_Time = Finish_Time;
         this.Location = Location;
@@ -48,9 +51,13 @@ public class AddTask {
 
     public void setId(int id) {this.id = id;}
 
-    public int getDate() {return Date;}
+    public Date getEventDate() {
+        return EventDate;
+    }
 
-    public void setDate(int date) {Date = date;}
+    public void setEventDate(Date eventDate) {
+        EventDate = eventDate;
+    }
 
     public int getStart_Time() {return Start_Time;}
 

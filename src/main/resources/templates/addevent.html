@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<!--<head th:replace="fragments :: head"></head>-->
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+
+<!--<nav th:replace="fragments :: navigation"></nav>-->
+
+<form method="post" style="max-width:600px;" th:object="${addevent}">
+
+    <table>
+        <tr>
+            <td>
+                <label>Date</label>
+            </td>
+            <td>
+                <input type="date" name="date" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Start Time</label>
+            </td>
+            <td>
+                <input type="time" name="start_time" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Finish Time</label>
+            </td>
+            <td>
+                <input type="time" name="finish_time" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Location</label>
+            </td>
+            <td>
+                <input type="text" name="location" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Type</label>
+            </td>
+            <td>
+                <input type="text" name="type" />
+            </td>
+        </tr><tr>
+            <td>
+                <label>Description</label>
+            </td>
+            <td>
+                <input type="text" name="description" />
+            </td>
+        </tr>
+
+
+
+    </table>
+
+    <input type="submit" value="Add Event" />
+</form>
+
+</body>
+</html>
