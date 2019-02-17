@@ -38,7 +38,7 @@
 
         <tr>
             <td>
-                <label th:for="lasttname">LastName</label>
+                <label th:for="lastname">LastName</label>
             </td>
             <td>
                 <input class="form-control" th:field="*{lastname}" />
@@ -51,7 +51,7 @@
                 <label th:for="password">Password</label>
             </td>
             <td>
-                <input class="form-control" th:field="*{password}" />
+                <input type="password" class="form-control" th:field="*{password}" />
                 <span th:errors="*{password}" class="error"></span>
             </td>
         </tr>

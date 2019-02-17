@@ -1,8 +1,11 @@
 package org.launchcode.todo.controllers;
 
+//compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity3")
 
+import org.hibernate.Query;
 import org.launchcode.todo.models.User;
 import org.launchcode.todo.models.Login;
+import org.launchcode.todo.models.data.AddEventDao;
 import org.launchcode.todo.models.data.LoginDao;
 import org.launchcode.todo.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -27,12 +33,18 @@ public class HomeController {
     @Autowired
     private LoginDao loginDao;
 
-    @RequestMapping(value="")
-    public String index(Model model){
+    @Autowired
+    private AddEventDao addEventDao;
 
-        model.addAttribute("title","My TODO List");
-        //model.addAttribute("username",login.getUsername());
-        return "home";
+    @RequestMapping(value="dashboard")
+    public String index(Model model, @ModelAttribute Login login,HttpSession session){
+
+       // model.addAttribute("title","My TODO List");
+        System.out.println(login.getUsername());
+       // HttpSession session = request.getSession();
+        String username=(String)session.getAttribute("username");
+        model.addAttribute("username",username);
+        return "dashboard";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
@@ -44,7 +56,7 @@ public class HomeController {
     }
 
     @RequestMapping(value="login", method= RequestMethod.POST)
-    public String processLoginForm(@RequestParam("username") String username, @RequestParam("password") String password, Model model){
+    public String processLoginForm(HttpSession  session,@RequestParam("username") String username, @RequestParam("password") String password, Model model){
 
         Login login = loginDao.findOne(username);
         System.out.println(login);
@@ -66,13 +78,25 @@ public class HomeController {
                 return "login";
             } else if (login.getPassword().equals(password)) {
 
-                model.addAttribute("username", login.getUsername());
+                //model.addAttribute("username", login.getUsername());
+                   // HttpSession session =request.getSession();
+                    session.setAttribute("username",login.getUsername());
 
-                return "dashboard";
+
+                //addEventDao;
+            return "redirect:dashboard";
             } else {
                 model.addAttribute("message", "Invalid Username and Password");
                 return "login";
             }
+
+    }
+
+    @RequestMapping(value="logout", method = RequestMethod.GET)
+    public String logout(HttpSession session){
+
+        session.invalidate();
+        return "redirect:login";
 
     }
 
@@ -96,7 +120,7 @@ public class HomeController {
         login.setPassword(newUser.getPassword());
         userDao.save(newUser);
         loginDao.save(login);
-        return "redirect:";
+        return "redirect:/login";
     }
 
 }

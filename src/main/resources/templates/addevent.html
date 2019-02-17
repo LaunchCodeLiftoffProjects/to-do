@@ -6,23 +6,37 @@
 
 <!--<nav th:replace="fragments :: navigation"></nav>-->
 
-<form method="post" style="max-width:600px;" th:object="${addevent}">
+<form method="post" style="max-width:600px;" th:object="${event}">
 
     <table>
         <tr>
             <td>
-                <label>Date</label>
+                <label>Event Date</label>
             </td>
-            <td>
-                <input type="date" name="date" />
-            </td>
+           <td>
+               <input type="date" th:field="*{EventDate}" th:value="*{EventDate}"/>
+           </td>
+
         </tr>
+        <!--<tr>-->
+            <!--<td>-->
+                <!--<label>Test Date</label>-->
+            <!--</td>-->
+            <!--<td>-->
+            <!--<input type="date" th:type="date" class="form-control"-->
+
+                   <!--th:text="${#dates.format(*{eDate}, 'dd-MM-yyyy')}" />-->
+            <!--</td>-->
+          <!--&lt;!&ndash;  <td th:text="${#dates.format(event.eDate,'dd-MM-yyyy')}"></td> &ndash;&gt;-->
+
+
+        <!--</tr>-->
         <tr>
             <td>
                 <label>Start Time</label>
             </td>
             <td>
-                <input type="time" name="start_time" />
+                <input type="time" name="start_Time" />
             </td>
         </tr>
         <tr>
@@ -30,7 +44,7 @@
                 <label>Finish Time</label>
             </td>
             <td>
-                <input type="time" name="finish_time" />
+                <input type="time" name="finish_Time" />
             </td>
         </tr>
         <tr>

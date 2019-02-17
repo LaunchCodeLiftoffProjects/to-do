@@ -1,15 +1,17 @@
 package org.launchcode.todo.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+
 public class User {
 
     @Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @GeneratedValue
     private int id;
 
@@ -33,6 +35,11 @@ public class User {
     @Size(min=1,message = "Email must not be Empty")
     private String email;
 
+    @OneToMany
+    @JoinColumn(name="user_id")
+    private List<Event> events = new ArrayList<>();
+
+
     public User(){}
 
     public User(String username, String firstname, String lastname, String password, String email) {
@@ -48,9 +55,9 @@ public class User {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    //public void setId(int id) {
+      //  this.id = id;
+    //}
 
     public String getUsername() {
         return username;
@@ -90,5 +97,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

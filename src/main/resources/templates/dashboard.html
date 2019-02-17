@@ -14,10 +14,12 @@
             <img th:src="@{/images/account.png}" />
         </div>
         <div class="add">
-            <img th:src="@{/images/add.png}" />
+            <a href="/addevent">
+                <img th:src="@{/images/add.png}" /> </a>
         </div>
         <div class="logout">
-            <img th:src="@{/images/logout.png}" />
+            <a href="/logout">
+                <img th:src="@{/images/logout.png}" /></a>
         </div>
     </header>
     <div class="body">
@@ -32,5 +34,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>
