@@ -44,8 +44,11 @@ public class HomeController {
        // HttpSession session = request.getSession();
         String username=(String)session.getAttribute("username");
         model.addAttribute("username",username);
+
         return "dashboard";
     }
+
+
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String displayLoginForm(Model model){

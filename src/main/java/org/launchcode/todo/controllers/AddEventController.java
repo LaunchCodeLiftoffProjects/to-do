@@ -3,6 +3,7 @@ package org.launchcode.todo.controllers;
 
 //import org.launchcode.todo.models.AddEvent;
 import org.launchcode.todo.models.Event;
+import org.launchcode.todo.models.Login;
 import org.launchcode.todo.models.User;
 import org.launchcode.todo.models.data.AddEventDao;
 import org.launchcode.todo.models.data.UserDao;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
@@ -31,6 +34,9 @@ public class AddEventController {
     @Autowired
     private UserDao userDao;
 
+    Login login = new Login();
+    User user = new User();
+
     // Request path: /addevent
    /* @RequestMapping(value = "")
     public String index(Model model) {
@@ -40,6 +46,7 @@ public class AddEventController {
 
         return "addevent";
     }*/
+
 
     @RequestMapping(value = "addevent", method = RequestMethod.GET)
     public String displayAddEventForm(Model model) {
@@ -52,8 +59,8 @@ public class AddEventController {
 
     @RequestMapping(value = "addevent", method = RequestMethod.POST)
     public String processAddEventForm(@ModelAttribute @Valid Event newAddEvent,
-                                       HttpSession session,
-                                       Errors errors, Model model) {
+                                      HttpSession session,
+                                      Errors errors, Model model, HttpServletRequest request, HttpServletResponse response) {
 
 //        SimpleDateFormat sdf=new SimpleDateFormat("MM-dd-yyyy");
 //
@@ -69,6 +76,7 @@ public class AddEventController {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Event");
             return "addevent";
+           // response.sendRedirect("addevent");
         }
 
 //        try {
@@ -80,9 +88,21 @@ public class AddEventController {
 //
 //        }
 
-        //User user = userDao.findOne(id);
+       // User user = userDao.findOne(userId);
         //newAddEvent.setUser(user);
+
+
+        String name =(String)session.getAttribute("username");
+        System.out.println(name+" is session name");
+
+newAddEvent.setUser_id(name);
+
+//session.setAttribute("username",name);
+        HttpSession session1 = request.getSession();
+        session1.setAttribute("username",name);
+
         addEventDao.save(newAddEvent);
-        return "dashboard";
+        return "redirect:/dashboard";
+       // response.sendRedirect("/dashboard");
     }
 }

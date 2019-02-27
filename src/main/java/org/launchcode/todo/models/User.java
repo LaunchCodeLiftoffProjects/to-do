@@ -28,16 +28,12 @@ public class User {
     private String lastname;
 
     @NotNull
-    @Size(min=1,message = "Password must not be Empty")
+    @Size(min=7,max = 14,message = "Password must be between 7 -14 characters")
     private String password;
 
     @NotNull
-    @Size(min=1,message = "Email must not be Empty")
+    @Size(min=13,max=20,message = "Email must be ")
     private String email;
-
-    @OneToMany
-    @JoinColumn(name="user_id")
-    private List<Event> events = new ArrayList<>();
 
 
     public User(){}
@@ -99,11 +95,5 @@ public class User {
         this.email = email;
     }
 
-    public List<Event> getEvents() {
-        return events;
-    }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
 }

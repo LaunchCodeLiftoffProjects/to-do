@@ -46,8 +46,9 @@ public class Event {
 
     private String Completed;
 
-    @ManyToOne//many events for 1 user
-    private User user;
+   // @ManyToOne//many events for 1 user
+    //@ForeignKey
+    private String user_id;
 
     public Event() {}
 
@@ -136,12 +137,12 @@ public class Event {
         Completed = completed;
     }
 
-    public User getUser() {
-        return user;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     @Override
