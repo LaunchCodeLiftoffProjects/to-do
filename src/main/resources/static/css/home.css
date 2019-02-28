@@ -2,18 +2,17 @@
      margin: 0;
      padding: 0;
  }
-
  body{
      margin: 0px;
      padding:0px;
      font-family: Bradley Hand ITC;
      font-style:normal;
      font-weight: 700;
-     background-image: url("../images/cork.jpg")
- }
- .back{
+     height: 100%;
+     width: 100%;
      background-image: url("../images/cork.jpg");
  }
+
  .header{
      display:grid;
      grid-template-columns: 15% 1fr 1fr 1fr 1fr 1fr 1fr 1fr 15%;

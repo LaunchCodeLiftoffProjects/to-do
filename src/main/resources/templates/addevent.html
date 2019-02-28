@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<!--<head th:replace="fragments :: head"></head>-->
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <link th:href="@{/css/home.css}" href="/css/home.css"  rel="stylesheet" type="text/css" />
+</head>
 <body class="container">
+<header class="header">
+    <div class="logo">
+        <a href="/dashboard">
+            <img th:src="@{/images/logo.png}" /></a>
+    </div>
+    <div class="account">
+        <a href="/editaccount">
+            <img th:src="@{/images/account.png}" /></a>
+    </div>
+    <div class="add">
+        <a href="/dashboard">
+            <img th:src="@{/images/return.png}" /></a>
+    </div>
+    <div class="logout">
+        <a href="/login">
+            <img th:src="@{/images/logout.png}" /></a>
+    </div>
+</header>
 <h1 th:text="${title}">Default Title</h1>
 
 <!--<nav th:replace="fragments :: navigation"></nav>-->
+<div class="body">
+    <div class="center">
+        <div class="centerin">
+            <div class="notes2">
 
 <form method="post" style="max-width:600px;" th:object="${event}">
 
@@ -77,6 +102,10 @@
 
     <input type="submit" value="Add Event" />
 </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
