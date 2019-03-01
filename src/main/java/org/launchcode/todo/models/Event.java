@@ -10,6 +10,7 @@ import java.util.Date;
 
 //created AddEvent class and variables
 @Entity
+//@Table(name = "eventtbl")
 public class Event {
 
     @Id
@@ -17,16 +18,9 @@ public class Event {
     private int id;
 
     @NotNull
-   // @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-
     private Date EventDate;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date eDate;
-
-    //private int Date;
-   // @Temporal(TemporalType.TIME)
    @DateTimeFormat(pattern = "HH:mm")
     private Date Start_Time;
 
@@ -48,17 +42,20 @@ public class Event {
 
    // @ManyToOne//many events for 1 user
     //@ForeignKey
-    private String user_id;
+   // private String user_id;
+
+    @ManyToOne
+    private User user;
 
     public Event() {}
 
     //constructor to initialize the objects of the AddEvent class
 
-    public Event(int id, Date eventDate, Date eDate, Date start_Time, Date finish_Time, String location, String type, String description, String completed) {
+    public Event(int id, Date eventDate,  Date start_Time, Date finish_Time, String location,
+                 String type, String description, String completed) {
         this.id = id;
 
         EventDate = eventDate;
-        this.eDate = eDate;
         Start_Time = start_Time;
         Finish_Time = finish_Time;
         Location = location;
@@ -137,12 +134,20 @@ public class Event {
         Completed = completed;
     }
 
-    public String getUser_id() {
-        return user_id;
+//    public String getUser_id() {
+//        return user_id;
+//    }
+//
+//    public void setUser_id(String user_id) {
+//        this.user_id = user_id;
+//    }
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -150,7 +155,7 @@ public class Event {
         return "Event{" +
                 "id=" + id +
                 ", EventDate=" + EventDate +
-                ", TestDate=" + eDate +
+
                 ", Start_Time=" + Start_Time +
                 ", Finish_Time=" + Finish_Time +
                 ", Location='" + Location + '\'' +

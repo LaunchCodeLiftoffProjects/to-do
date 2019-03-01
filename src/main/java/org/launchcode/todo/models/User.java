@@ -1,5 +1,7 @@
 package org.launchcode.todo.models;
 
+
+import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -7,16 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-
+//@Table(name = "usertbl")
 public class User {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-    @GeneratedValue
-    private int id;
+    @Generated("assigned")
+    //private int id;
 
     @NotNull
-    @Size(min=3, max=10)
+    @Size(min=6, max=10)
     private String username;
 
     @NotNull
@@ -35,6 +36,9 @@ public class User {
     @Size(min=13,max=20,message = "Email must be ")
     private String email;
 
+    @OneToMany
+    //@JoinColumn(name = "user_id")
+    private List<Event> events = new ArrayList<>();
 
     public User(){}
 
@@ -47,9 +51,9 @@ public class User {
         this.email = email;
     }
 
-    public int getId() {
-        return id;
-    }
+   // public int getId() {
+     //   return id;
+    //}
 
     //public void setId(int id) {
       //  this.id = id;
@@ -95,5 +99,11 @@ public class User {
         this.email = email;
     }
 
+    public List<Event> getEvents() {
+        return events;
+    }
 
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
 }

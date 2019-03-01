@@ -3,6 +3,7 @@ package org.launchcode.todo.controllers;
 //compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity3")
 
 import org.hibernate.Query;
+import org.launchcode.todo.models.Event;
 import org.launchcode.todo.models.User;
 import org.launchcode.todo.models.Login;
 import org.launchcode.todo.models.data.AddEventDao;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -37,12 +39,10 @@ public class HomeController {
     private AddEventDao addEventDao;
 
     @RequestMapping(value="dashboard")
-    public String index(Model model, @ModelAttribute Login login,HttpSession session){
+    public String index(Model model, HttpSession session){
 
-       // model.addAttribute("title","My TODO List");
-        System.out.println(login.getUsername());
-       // HttpSession session = request.getSession();
         String username=(String)session.getAttribute("username");
+
         model.addAttribute("username",username);
 
         return "dashboard";
@@ -59,42 +59,27 @@ public class HomeController {
     }
 
     @RequestMapping(value="login", method= RequestMethod.POST)
-    public String processLoginForm(HttpSession  session,@RequestParam("username") String username, @RequestParam("password") String password, Model model){
+    public String processLoginForm(HttpSession  session,@RequestParam("username") String username,
+                                   @RequestParam("password") String password, Model model) {
 
-        Login login = loginDao.findOne(username);
-        System.out.println(login);
+        User user = userDao.findOne(username);
+        if(user == null){
+            model.addAttribute("message", "you are not Registered");
+               return "login";
+        }
+        else if (user.getUsername().equals(username) && user.getPassword().equals(password)){
 
-//        if(username == null || password == null){
-//
-//            model.addAttribute("message", "Please fill the fields");
-//            return "login";
-//        }
-//        else {
-//
-//            Optional<Login> loginOne = loginDao.findById(username);
-//            System.out.println("loginone = " + loginOne);
-//            Login login = loginOne.get();
-//            System.out.println(login.getUsername());
-
-            if (login == null) {
-                model.addAttribute("message", "you are not Registered");
-                return "login";
-            } else if (login.getPassword().equals(password)) {
-
-                //model.addAttribute("username", login.getUsername());
-                   // HttpSession session =request.getSession();
-                    session.setAttribute("username",login.getUsername());
-
-
-                //addEventDao;
+            session.setAttribute("username",user.getUsername());
             return "redirect:dashboard";
-            } else {
-                model.addAttribute("message", "Invalid Username and Password");
-                return "login";
-            }
+        }
+        else{
+            model.addAttribute("message", "Invalid Username and Password");
+              return "login";
+        }
 
     }
 
+//
     @RequestMapping(value="logout", method = RequestMethod.GET)
     public String logout(HttpSession session){
 
@@ -112,7 +97,8 @@ public class HomeController {
     }
 
     @RequestMapping(value="newuser", method=RequestMethod.POST)
-    public String processNewuserForm(@ModelAttribute @Valid User newUser, Errors errors, Model model, @RequestParam String username){
+    public String processNewuserForm(@ModelAttribute @Valid User newUser, Errors errors, Model model,
+                                     @RequestParam String username){
 
         if(errors.hasErrors()){
             model.addAttribute("title","SignUp Form");

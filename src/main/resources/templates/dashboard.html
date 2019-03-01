@@ -34,6 +34,22 @@
             </div>
         </div>
     </div>
+    <table class="table">
+
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+        </tr>
+
+        <tr th:each="event : ${AllEvents}">
+            <td th:text="${event.Location}"></td>
+            <td th:text="${event.Type}"></td>
+            <td th:text="${event.Description}"></td>
+        </tr>
+
+    </table>
+
 </div>
 
 </body>

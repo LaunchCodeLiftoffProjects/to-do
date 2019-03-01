@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 //Defines the class
 @Controller
@@ -37,15 +40,6 @@ public class AddEventController {
     Login login = new Login();
     User user = new User();
 
-    // Request path: /addevent
-   /* @RequestMapping(value = "")
-    public String index(Model model) {
-
-        model.addAttribute("addevents", addEventDao.findAll());
-        model.addAttribute("title", "Add Event");
-
-        return "addevent";
-    }*/
 
 
     @RequestMapping(value = "addevent", method = RequestMethod.GET)
@@ -59,50 +53,33 @@ public class AddEventController {
 
     @RequestMapping(value = "addevent", method = RequestMethod.POST)
     public String processAddEventForm(@ModelAttribute @Valid Event newAddEvent,
-                                      HttpSession session,
-                                      Errors errors, Model model, HttpServletRequest request, HttpServletResponse response) {
+                                      HttpSession session, Errors errors, Model model,
+                                      HttpServletRequest request, HttpServletResponse response) {
 
-//        SimpleDateFormat sdf=new SimpleDateFormat("MM-dd-yyyy");
-//
-//        String yourDate=sdf.format(newAddEvent.getEventDate());
-//        System.out.println(yourDate);
 
-//        SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm a");
-//        System.out.println(sdf1.format(newAddEvent.getStart_Time()));
-
-//
        System.out.println("new event" + newAddEvent);
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Event");
             return "addevent";
-           // response.sendRedirect("addevent");
+
         }
-
-//        try {
-//            newAddEvent.setEventDate(sdf.parse(yourDate));
-//            newAddEvent.setStart_Time(sdf1.parse(sdf1.format(newAddEvent.getStart_Time())));
-//            newAddEvent.setFinish_Time(sdf1.parse(sdf1.format(newAddEvent.getFinish_Time())));
-//        }
-//        catch(Exception e){
-//
-//        }
-
-       // User user = userDao.findOne(userId);
-        //newAddEvent.setUser(user);
-
 
         String name =(String)session.getAttribute("username");
         System.out.println(name+" is session name");
+        User user = userDao.findOne(name);
+        newAddEvent.setUser(user);
 
-newAddEvent.setUser_id(name);
-
-//session.setAttribute("username",name);
         HttpSession session1 = request.getSession();
         session1.setAttribute("username",name);
 
         addEventDao.save(newAddEvent);
+
+        //send all details to dashboard to display events
+
         return "redirect:/dashboard";
-       // response.sendRedirect("/dashboard");
+
     }
+
+
 }
