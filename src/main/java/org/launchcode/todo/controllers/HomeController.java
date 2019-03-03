@@ -42,13 +42,13 @@ public class HomeController {
     public String index(Model model, HttpSession session){
 
         String username=(String)session.getAttribute("username");
-
+        //model.addAttribute("AllEvents", addEventDao.findAll());
+        User user = userDao.findOne(username);
+        model.addAttribute("AllEvents", addEventDao.findByUser(user));
         model.addAttribute("username",username);
 
         return "dashboard";
     }
-
-
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String displayLoginForm(Model model){
