@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <link th:href="@{/css/home.css}" href="/css/home.css"  rel="stylesheet" type="text/css" />
+</head>
+<body class="container">
+<div class="back">
+    <header class="header">
+        <div class="logo">
+            <a href="/dashboard">
+                <img th:src="@{/images/logo.png}" /></a>
+        </div>
+        <div class="account">
+            <a href="/editaccount">
+                <img th:src="@{/images/account.png}" /></a>
+        </div>
+        <div class="add">
+            <a href="/dashboard.html">
+                <img th:src="@{/images/return.png}" /></a>
+        </div>
+        <div class="logout">
+            <a href="/logout">
+                <img th:src="@{/images/logout.png}" /></a>
+        </div
+    </header>
+    <div class="body">
+        <div class="center">
+            <div class="centerin">
+                <div class="notes2">
+
+                    <form method="post" style="max-width:600px;" th:object="${user}">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label th:for="username">UserName</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" th:field="*{username}" />
+                                    <span th:errors="*{username}" class="error"></span>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label th:for="firstname">FirstName</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" th:field="*{firstname}" />
+                                    <span th:errors="*{firstname}" class="error"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label th:for="lastname">LastName</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" th:field="*{lastname}" />
+                                    <span th:errors="*{lastname}" class="error"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label th:for="password">Password</label>
+                                </td>
+                                <td>
+                                    <input type="password" class="form-control" th:field="*{password}" />
+                                    <span th:errors="*{password}" class="error"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label>Re-Type Password</label>
+                                </td>
+                                <td>
+                                    <input type="password" name="rtpassword" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label th:for="email">Email</label>
+                                </td>
+                                <td>
+                                    <input class="form-control" th:field="*{email}" />
+                                    <span th:errors="*{email}" class="error"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+
+                                    <input type="submit" value="Update"/>
+                                </td>
+                            </tr>
+
+
+                        </table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
