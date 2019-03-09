@@ -47,7 +47,7 @@ public class AddEventController {
 
         model.addAttribute("title", "Add Event");
         model.addAttribute(new Event());
-
+        System.out.println("display event form");
         return "addevent";
     }
 

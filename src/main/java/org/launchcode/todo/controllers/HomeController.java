@@ -112,4 +112,25 @@ public class HomeController {
         return "redirect:/login";
     }
 
+    @RequestMapping(value = "editaccount", method = RequestMethod.GET)
+    public String displayEditUser(Model model, HttpSession session){
+
+        String username = (String)session.getAttribute("username");
+        model.addAttribute(userDao.findOne(username));
+        return "editaccount";
+    }
+
+    @RequestMapping(value = "editaccount", method = RequestMethod.POST)
+    public String processEditUser(@ModelAttribute User newUser, Model model, Errors errors){
+
+        userDao.save(newUser);
+        return "redirect:dashboard";
+    }
+
+
+
+
+
+
+
 }
