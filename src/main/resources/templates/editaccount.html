@@ -64,7 +64,17 @@
 
                             <tr>
                                 <td>
-                                    <label th:for="password">Password</label>
+                                    <label th:for="password">Current Password</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" th:field="*{password}" disabled="disabled"/>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label th:for="password">New Password</label>
                                 </td>
                                 <td>
                                     <input type="password" class="form-control" th:field="*{password}" />

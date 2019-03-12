@@ -2,12 +2,8 @@ package org.launchcode.todo.controllers;
 
 //compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity3")
 
-import org.hibernate.Query;
-import org.launchcode.todo.models.Event;
 import org.launchcode.todo.models.User;
-import org.launchcode.todo.models.Login;
 import org.launchcode.todo.models.data.AddEventDao;
-import org.launchcode.todo.models.data.LoginDao;
 import org.launchcode.todo.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,12 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Optional;
 
 @Controller
 //@RequestMapping(value = "todo")
@@ -31,9 +23,6 @@ public class HomeController {
 
     @Autowired
     private UserDao userDao;
-
-    @Autowired
-    private LoginDao loginDao;
 
     @Autowired
     private AddEventDao addEventDao;
@@ -79,7 +68,7 @@ public class HomeController {
 
     }
 
-//
+
     @RequestMapping(value="logout", method = RequestMethod.GET)
     public String logout(HttpSession session){
 
@@ -104,11 +93,8 @@ public class HomeController {
             model.addAttribute("title","SignUp Form");
             return "newuser";
         }
-        Login login = new Login();
-        login.setUsername(newUser.getUsername());
-        login.setPassword(newUser.getPassword());
+
         userDao.save(newUser);
-        loginDao.save(login);
         return "redirect:/login";
     }
 
@@ -118,6 +104,7 @@ public class HomeController {
         String username = (String)session.getAttribute("username");
         model.addAttribute(userDao.findOne(username));
         return "editaccount";
+
     }
 
     @RequestMapping(value = "editaccount", method = RequestMethod.POST)
@@ -126,11 +113,5 @@ public class HomeController {
         userDao.save(newUser);
         return "redirect:dashboard";
     }
-
-
-
-
-
-
 
 }
