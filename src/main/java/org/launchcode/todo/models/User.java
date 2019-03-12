@@ -4,6 +4,7 @@ package org.launchcode.todo.models;
 import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,9 @@ public class User {
     private String password;
 
     @NotNull
-    @Size(min=13,max=20,message = "Email must be ")
+    //@Size(min=13,max=20)
+    @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",message = "Enter valid email ")
     private String email;
 
     @OneToMany

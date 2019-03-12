@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,6 +45,13 @@ public class HomeController {
         model.addAttribute("username",username);
 
         return "dashboard";
+    }
+
+    @RequestMapping(value = "completeevent/{id}", method = RequestMethod.GET)
+    public String completeEvent(Model model, @PathVariable int id) {
+
+        addEventDao.delete(id);
+        return "redirect:/dashboard";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
