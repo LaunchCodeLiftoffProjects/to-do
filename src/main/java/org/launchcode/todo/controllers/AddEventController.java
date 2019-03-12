@@ -37,7 +37,7 @@ public class AddEventController {
     @Autowired
     private UserDao userDao;
 
-    Login login = new Login();
+
     User user = new User();
 
 
@@ -74,8 +74,6 @@ public class AddEventController {
         session1.setAttribute("username",name);
 
         addEventDao.save(newAddEvent);
-
-        //send all details to dashboard to display events
 
         return "redirect:/dashboard";
 
