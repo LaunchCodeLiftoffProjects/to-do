@@ -29,7 +29,7 @@
         </div>
         <div class="center">
             <div class="centerin">
-                    <table class="table">
+                + ${menu.id}<table class="table">
 
                         <tr>
                             <th>Event Date</th>
@@ -38,6 +38,9 @@
                             <th>Location</th>
                             <th>Type</th>
                             <th>Description</th>
+                            <th>Completed?</th>
+
+
                         </tr>
 
                         <tr th:each="event : ${AllEvents}">
@@ -47,6 +50,7 @@
                             <td th:text="${event.Location}"></td>
                             <td th:text="${event.Type}"></td>
                             <td th:text="${event.Description}"></td>
+                            <td><a th:href="'/completeevent/' + ${event.id}">complete</a></td>
                         </tr>
 
                     </table>
