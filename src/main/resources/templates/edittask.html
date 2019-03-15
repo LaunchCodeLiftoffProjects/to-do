@@ -46,7 +46,7 @@
                                     <label>Start Time</label>
                                 </td>
                                 <td>
-                                    <input type="time" name="start_Time" />
+                                    <input type="time" th:field="*{start_Time}" />
                                 </td>
                             </tr>
                             <tr>
@@ -54,7 +54,7 @@
                                     <label>Finish Time</label>
                                 </td>
                                 <td>
-                                    <input type="time" name="finish_Time" />
+                                    <input type="time" th:field="*{finish_Time}" />
                                 </td>
                             </tr>
                             <tr>
@@ -62,7 +62,7 @@
                                     <label>Location</label>
                                 </td>
                                 <td>
-                                    <input type="text" name="location" />
+                                    <input type="text" th:field="*{location}" />
                                 </td>
                             </tr>
                             <tr>
@@ -70,14 +70,14 @@
                                     <label>Type</label>
                                 </td>
                                 <td>
-                                    <input type="text" name="type" />
+                                    <input type="text" th:field="*{type}" />
                                 </td>
                             </tr><tr>
                             <td>
                                 <label>Description</label>
                             </td>
                             <td>
-                                <input type="text" name="description" />
+                                <input type="text" th:field="*{description}" />
                             </td>
                         </tr>
 

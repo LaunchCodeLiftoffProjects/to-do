@@ -5,7 +5,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //created AddEvent class and variables
@@ -15,6 +14,7 @@ public class Event {
 
     @Id
     @GeneratedValue
+    @NotNull
     private int id;
 
     @NotNull
@@ -73,9 +73,9 @@ public class Event {
         return id;
     }
 
-    //public void setId(int id) {
-      //  this.id = id;
-    //}
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Date getEventDate() {
         return EventDate;
@@ -142,13 +142,10 @@ public class Event {
 //        this.user_id = user_id;
 //    }
 
-    public User getUser() {
-        return user;
-    }
+    public User getUser() { return user; }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+    public void setUser(User user) { this.user = user; }
+
 
     @Override
     public String toString() {
@@ -164,4 +161,6 @@ public class Event {
                 ", Completed='" + Completed + '\'' +
                 '}';
     }
+
+
 }

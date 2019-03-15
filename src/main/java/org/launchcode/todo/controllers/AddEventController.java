@@ -3,7 +3,6 @@ package org.launchcode.todo.controllers;
 
 //import org.launchcode.todo.models.AddEvent;
 import org.launchcode.todo.models.Event;
-import org.launchcode.todo.models.Login;
 import org.launchcode.todo.models.User;
 import org.launchcode.todo.models.data.AddEventDao;
 import org.launchcode.todo.models.data.UserDao;
@@ -11,19 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+
 
 //Defines the class
 @Controller
@@ -79,5 +72,49 @@ public class AddEventController {
 
     }
 
+    @RequestMapping(value = "edittask/{id}", method = RequestMethod.GET)
+    public String editEvent(@PathVariable int id, Model model) {
 
-}
+        Event event = addEventDao.findOne(id);
+        model.addAttribute("event", event);
+        System.out.println(event);
+        return "edittask";
+    }
+
+    @RequestMapping(value = "edittask/{id}", method = RequestMethod.POST)
+    public String processEditEvent(@ModelAttribute @Valid Event event, Errors errors, Model model,HttpSession session) {
+
+
+//        if (errors.hasErrors()) {
+//            model.addAttribute("title", "Edit Task");
+//            return "edittask";
+
+    //    }
+
+        String name =(String)session.getAttribute("username");
+        User user = new User();
+        user.setUsername(name);
+        event.setUser(user);
+
+
+        addEventDao.save(event);
+        return "redirect:/dashboard";
+//        event = addEventDao.findOne(event.getId());
+//        System.out.println(event);
+//
+//        event.setStart_Time(newAddEvent.getStart_Time());
+//        event.setFinish_Time(newAddEvent.getFinish_Time());
+//        event.setLocation(newAddEvent.getLocation());
+//        event.setType(newAddEvent.getType());
+//        event.setDescription(newAddEvent.getDescription());
+//        event.setEventDate(newAddEvent.getEventDate());
+
+
+
+        }
+
+
+    }
+
+
+

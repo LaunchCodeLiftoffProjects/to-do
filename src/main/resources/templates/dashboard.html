@@ -50,6 +50,7 @@
                             <td th:text="${event.Location}"></td>
                             <td th:text="${event.Type}"></td>
                             <td th:text="${event.Description}"></td>
+                            <td><a th:href="'/edittask/' + ${event.id}">Edit Event</a></td>
                             <td><a th:href="'/completeevent/' + ${event.id}">complete</a></td>
                         </tr>
 
